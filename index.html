@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>zoo loop sample</title>
+  <title>the game</title>
 </head>    
 
 
@@ -12,13 +12,13 @@
         <h1>  Do you want to play a game ?</h1>
         <br>
         <h3>  The computer will choose a letter</h3>
-        <h3>  Then you choose a letter and try to match what the coputer chose.</h3>
+        <h3>  Then you choose a letter and try to match what the computer selected.</h3>
 
 
     </div>
         
-    <div class = "psygame">
-        <p>testtest</p>
+    <div id="psygame">
+        <p>Lets Go !</p>
     </div>
 
 
@@ -34,20 +34,71 @@
 //		Computer chooses a letter
 //          create variables userguess, computerchoice, totnum attempts wins losses	
 //		Have a user guess a letter 
+//Let the computer randomly choose a letter from a partial list.
 //
-//		See if that letter matches the computer choice
+//		See if that letter matches the computerGuess[i]
 //		if the user wins  add 1 to score
 //		if the user loses add 1 to loss
 //		there is a total of 10 attempts
 //		display final message and exit after 10 attempts
 //
-//  declare variables
-            var userguess=prompt("Please guess what letter I am thinking of ?");
+//  Declare variables and array
 
+        var computerChoices = ["a", "b", "c", "m", "s", "h", "y", "o", "z", "l", "k", "i", "f"]; 
+        var computerGuess = computerChoices[Math.floor(Math.random() 
+        * computerChoices.length)];
+ 
+        
+           
+            var wins = 0;
+            var losses = 0;
+            var totNumTries = 0;
+            var stop1 = false;
+   
+             //var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+         //   var computerGuess = "p";
 
+        while (stop1 == false)  {
+            console.log("tot" + totNumTries);
+            console.log(computerGuess)
+            var yourGuess=prompt("Please guess what letter I am thinking of ?");
+            console.log(yourGuess);
+        
+            if (yourGuess != computerGuess){
+            console.log("my guess" + yourGuess);
+            losses = losses + 1;    
+            totNumTries = totNumTries + 1;
+            alert("Nope, try again!")
+            
+                if (totNumTries > 4) {
+                    stop1 = true;
+                }
 
+        } else {
+            console.log("Its guess" + computerGuess);
+            wins = wins + 1;
+            totNumTries = totNumTries + 1;
+            alert("WOW, you won !!!!!!")
+            stop1 = true;
+        }
+           console.log("now im at score");
+            
+    
+            var html  = 
+                "<p> The computers choice was:      " + computerGuess   + "</p>"  +
+                "<p> Wins =       " + wins   + "</p>"    +
+                "<p> Losses =       " + losses   + "</p>" +
+                "<p> Total Num of guesses      " + totNumTries   + " out of 5 </p>"  ;
+          
+        // use preselector to replace div.psygame with results
 
-
-    </script>
+               document.querySelector('#psygame').innerHTML = html;
+    }           
+            
+        </script>
+            <p>*************************************************</p>
+            <p>* IF YOU WANT TO PLAY AGAIN, REFRESH SCREEN *</p>
+            <p>*************************************************</p>
+    
   </body>
 </html>
